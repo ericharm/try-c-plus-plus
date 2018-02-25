@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "hero.h"
 
 using namespace std;
 
@@ -13,8 +14,15 @@ class Game {
     void update();
     void render();
 
+    void handleKeyPress(sf::Keyboard::Key, bool);
+
   private:
     sf::RenderWindow window;
-    sf::CircleShape hero;
+    Hero hero;
+
+    bool movingUp;
+    bool movingDown;
+    bool movingLeft;
+    bool movingRight;
 
 };
