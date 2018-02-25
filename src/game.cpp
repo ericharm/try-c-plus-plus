@@ -12,20 +12,20 @@ Game::Game() : window(sf::VideoMode(640, 480), "SFML Application") {
 
 void Game::run() {
   while (this->window.isOpen()) {
-    sf::Event event;
-
-    while (this->window.pollEvent(event))
-    {
-      if (event.type == sf::Event::Closed)
-        this->window.close();
-    }
-
+    this->handleInput();
+    this->update();
     this->render();
-
   }
 }
 
 void Game::handleInput() {
+  sf::Event event;
+  while (this->window.pollEvent(event))
+  {
+    if (event.type == sf::Event::Closed) {
+      this->window.close();
+    }
+  }
 }
 
 void Game::update() {
