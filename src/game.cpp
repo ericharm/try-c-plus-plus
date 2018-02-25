@@ -5,6 +5,8 @@ using namespace std;
 
 Game::Game() : window(sf::VideoMode(640, 480), "SFML Application") {
   this->hero = sf::CircleShape(100.f);
+  this->hero.setRadius(10.f);
+  this->hero.setPosition(10.f, 10.f);
   this->hero.setFillColor(sf::Color::Red);
 }
 

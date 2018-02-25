@@ -1,3 +1,4 @@
 #!/bin/bash
-g++ -c main.cpp
-g++ main.o -o app -lsfml-graphics -lsfml-window -lsfml-system
+mkdir -p build
+g++ -c main.cpp -o build/main.o
+g++ build/main.o -o build/app -lsfml-graphics -lsfml-window -lsfml-system

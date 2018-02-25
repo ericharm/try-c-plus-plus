@@ -8,4 +8,4 @@
 
 - `./compile` (requires g++, clang)
 
-- `./app`
+- `./build/app`
