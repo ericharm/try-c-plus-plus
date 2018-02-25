@@ -5,7 +5,7 @@ using namespace std;
 class Game {
 
   public:
-    Game(sf::RenderWindow& window);
+    Game();
     void run();
 
   private:
@@ -14,7 +14,7 @@ class Game {
     void render();
 
   private:
-    sf::RenderWindow& window;
+    sf::RenderWindow window;
     sf::CircleShape hero;
 
 };

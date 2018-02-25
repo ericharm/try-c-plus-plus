@@ -3,19 +3,19 @@
 
 using namespace std;
 
-Game::Game(sf::RenderWindow& window) : window(window) {
+Game::Game() : window(sf::VideoMode(640, 480), "SFML Application") {
   this->hero = sf::CircleShape(100.f);
   this->hero.setFillColor(sf::Color::Red);
 }
 
 void Game::run() {
-  while (window.isOpen()) {
+  while (this->window.isOpen()) {
     sf::Event event;
 
-    while (window.pollEvent(event))
+    while (this->window.pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
-        window.close();
+        this->window.close();
     }
 
     this->render();
