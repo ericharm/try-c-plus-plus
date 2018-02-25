@@ -3,11 +3,9 @@
 
 using namespace std;
 
-Game::Game(sf::RenderWindow& window, sf::CircleShape hero) : window(window) {
-  this->hero = hero;
-}
-
-Game::~Game() {
+Game::Game(sf::RenderWindow& window) : window(window) {
+  this->hero = sf::CircleShape(100.f);
+  this->hero.setFillColor(sf::Color::Red);
 }
 
 void Game::run() {
