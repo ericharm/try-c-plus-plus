@@ -11,15 +11,15 @@ Game::Game(sf::RenderWindow& window) : window(window) {
 void Game::run() {
   while (window.isOpen()) {
     sf::Event event;
+
     while (window.pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
         window.close();
     }
 
-    window.clear();
-    window.draw(this->hero);
-    window.display();
+    this->render();
+
   }
 }
 
@@ -30,5 +30,8 @@ void Game::update() {
 }
 
 void Game::render() {
+    this->window.clear();
+    this->window.draw(this->hero);
+    this->window.display();
 }
 
