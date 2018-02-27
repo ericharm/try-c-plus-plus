@@ -1,3 +1,5 @@
+#ifndef GAME_H
+#define GAME_H
 #include <SFML/Graphics.hpp>
 #include "hero.h"
 
@@ -11,7 +13,7 @@ class Game {
 
   private:
     void handleInput();
-    void update();
+    void update(sf::Time);
     void render();
 
     void handleKeyPress(sf::Keyboard::Key, bool);
@@ -26,3 +28,4 @@ class Game {
     bool movingRight;
 
 };
+#endif

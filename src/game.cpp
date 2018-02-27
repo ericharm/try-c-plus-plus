@@ -14,9 +14,16 @@ Game::Game() : window(sf::VideoMode(640, 480), "SFML Application") {
 }
 
 void Game::run() {
+  sf::Clock clock;
+  sf::Time timePerFrame = sf::seconds(1.0f / 30.0f);
+  sf::Time timeSinceLastUpdate = sf::Time::Zero;
   while (this->window.isOpen()) {
-    this->handleInput();
-    this->update();
+    timeSinceLastUpdate += clock.restart();
+    while (timeSinceLastUpdate > timePerFrame) {
+      timeSinceLastUpdate -= timePerFrame;
+      this->handleInput();
+      this->update(timePerFrame);
+    }
     this->render();
   }
 }
@@ -42,29 +49,25 @@ void Game::handleInput() {
 }
 
 void Game::handleKeyPress(sf::Keyboard::Key key, bool pressed) {
-  if (key == sf::Keyboard::W) {
+  if (key == sf::Keyboard::Up) {
     this->movingUp = pressed;
-  } else if (key == sf::Keyboard::A) {
+  } else if (key == sf::Keyboard::Left) {
     this->movingLeft = pressed;
-  } else if (key == sf::Keyboard::S) {
+  } else if (key == sf::Keyboard::Down) {
     this->movingDown = pressed;
-  } else if (key == sf::Keyboard::D) {
+  } else if (key == sf::Keyboard::Right) {
     this->movingRight = pressed;
   }
 }
 
-void Game::update() {
-  float speed = 1;
+void Game::update(sf::Time deltaTime) {
+  float speed = 100.0f;
   sf::Vector2f movement(0.f, 0.f);
-  if (this->movingUp)
-    movement.y -= speed;
-  if (this->movingDown)
-    movement.y += speed;
-  if (this->movingLeft)
-    movement.x -= speed;
-  if (this->movingRight)
-    movement.x += speed;
-  this->hero.update(movement);
+  if (this->movingUp) movement.y -= speed;
+  if (this->movingDown) movement.y += speed;
+  if (this->movingLeft) movement.x -= speed;
+  if (this->movingRight) movement.x += speed;
+  this->hero.update(movement * deltaTime.asSeconds());
 }
 
 void Game::render() {
@@ -72,4 +75,3 @@ void Game::render() {
     this->hero.render(this->window);
     this->window.display();
 }
-
