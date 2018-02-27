@@ -12,7 +12,8 @@ class Hero {
     void render(sf::RenderWindow&);
 
   private:
-    sf::CircleShape shape;
+    sf::Texture texture;
+    sf::Sprite sprite;
 
 };
 #endif

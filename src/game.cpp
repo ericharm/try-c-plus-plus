@@ -18,6 +18,7 @@ void Game::run() {
   sf::Time timePerFrame = sf::seconds(1.0f / 30.0f);
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
   while (this->window.isOpen()) {
+    this->handleInput();
     timeSinceLastUpdate += clock.restart();
     while (timeSinceLastUpdate > timePerFrame) {
       timeSinceLastUpdate -= timePerFrame;

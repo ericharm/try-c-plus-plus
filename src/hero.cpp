@@ -4,17 +4,20 @@
 using namespace std;
 
 Hero::Hero() {
-  this->shape = sf::CircleShape(100.f);
-  this->shape.setRadius(10.f);
-  this->shape.setPosition(10.f, 10.f);
-  this->shape.setFillColor(sf::Color::Red);
+  this->texture = sf::Texture();
+  if (!texture.loadFromFile("assets/images/hero.png")) {
+    throw "FileNotFound";
+  }
+  this->sprite = sf::Sprite(this->texture);
+  this->sprite.setPosition(10.f, 10.f);
 }
 
 void Hero::update(sf::Vector2f movement) {
   float speed = 1;
-  this->shape.move(movement);
+  this->sprite.move(movement);
 }
 
 void Hero::render(sf::RenderWindow &window) {
-    window.draw(this->shape);
+    this->sprite.setTexture(this->texture);
+    window.draw(this->sprite);
 }
