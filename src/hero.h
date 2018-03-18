@@ -5,7 +5,7 @@
 class Hero {
 
   public:
-    Hero();
+    Hero(sf::Texture texture);
     void update(sf::Vector2f direction);
     void render(sf::RenderWindow& window);
 

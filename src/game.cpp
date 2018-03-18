@@ -1,11 +1,18 @@
-// #include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
+#include "textures.cpp"
+#include "texture_holder.h"
 #include "game.h"
 #include "hero.h"
 
 using namespace std;
 
-Game::Game() : window(sf::VideoMode(640, 480), "SFML Application") {
-  this->hero = Hero();
+Game::Game(TextureHolder* textures)
+  : window(sf::VideoMode(640, 480), "SFML Application") {
+  this->textures = textures;
+
+  sf::Texture heroTexture = this->textures->get(Textures::Hero);
+  Hero hero = Hero(heroTexture);
+  this->entities.push_back(hero);
 
   this->movingUp = false;
   this->movingDown = false;
@@ -68,11 +75,18 @@ void Game::update(sf::Time deltaTime) {
   if (this->movingDown) movement.y += speed;
   if (this->movingLeft) movement.x -= speed;
   if (this->movingRight) movement.x += speed;
-  this->hero.update(movement * deltaTime.asSeconds());
+
+  if (!this->entities.empty()) {
+    Hero* hero = &entities.front();
+    hero->update(movement * deltaTime.asSeconds());
+  }
 }
 
 void Game::render() {
     this->window.clear();
-    this->hero.render(this->window);
+    if (!this->entities.empty()) {
+      Hero hero = entities.front();
+      hero.render(this->window);
+    }
     this->window.display();
 }

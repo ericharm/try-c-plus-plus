@@ -2,11 +2,12 @@
 #define GAME_H
 #include <SFML/Graphics.hpp>
 #include "hero.h"
+#include "texture_holder.h"
 
 class Game {
 
   public:
-    Game();
+    Game(TextureHolder* textures);
     void run();
 
   private:
@@ -18,7 +19,8 @@ class Game {
 
   private:
     sf::RenderWindow window;
-    Hero hero;
+    std::vector<Hero> entities;
+    TextureHolder* textures;
 
     bool movingUp;
     bool movingDown;

@@ -3,11 +3,8 @@
 
 using namespace std;
 
-Hero::Hero() {
-  this->texture = sf::Texture();
-  if (!texture.loadFromFile("assets/images/hero.png")) {
-    throw "FileNotFound";
-  }
+Hero::Hero(sf::Texture texture) {
+  this->texture = texture;
   this->sprite = sf::Sprite(this->texture);
   this->sprite.setPosition(10.f, 10.f);
 }
