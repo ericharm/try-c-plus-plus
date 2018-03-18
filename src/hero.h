@@ -2,14 +2,12 @@
 #define HERO_H
 #include <SFML/Graphics.hpp>
 
-using namespace std;
-
 class Hero {
 
   public:
     Hero();
-    void update(sf::Vector2f);
-    void render(sf::RenderWindow&);
+    void update(sf::Vector2f direction);
+    void render(sf::RenderWindow& window);
 
   private:
     sf::Texture texture;

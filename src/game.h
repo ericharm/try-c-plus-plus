@@ -3,8 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "hero.h"
 
-using namespace std;
-
 class Game {
 
   public:
@@ -13,10 +11,10 @@ class Game {
 
   private:
     void handleInput();
-    void update(sf::Time);
+    void update(sf::Time deltaTime);
     void render();
 
-    void handleKeyPress(sf::Keyboard::Key, bool);
+    void handleKeyPress(sf::Keyboard::Key key, bool isPressed);
 
   private:
     sf::RenderWindow window;
@@ -26,6 +24,5 @@ class Game {
     bool movingDown;
     bool movingLeft;
     bool movingRight;
-
 };
 #endif

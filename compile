@@ -1,4 +1,4 @@
 #!/bin/bash
 mkdir -p build
-g++ -c main.cpp -o build/main.o
-g++ build/main.o -o build/app -lsfml-graphics -lsfml-window -lsfml-system
+g++ -c main.cpp src/*.cpp
+g++ *.o -o build/app -lsfml-graphics -lsfml-window -lsfml-system && rm *.o

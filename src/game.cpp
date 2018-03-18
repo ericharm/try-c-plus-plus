@@ -1,6 +1,6 @@
-#include <SFML/Graphics.hpp>
+// #include <SFML/Graphics.hpp>
 #include "game.h"
-#include "hero.cpp"
+#include "hero.h"
 
 using namespace std;
 
