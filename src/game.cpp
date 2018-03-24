@@ -1,12 +1,6 @@
-#include <SFML/Graphics.hpp>
-#include "textures.cpp"
-#include "texture_holder.h"
 #include "game.h"
-#include "hero.h"
 
-using namespace std;
-
-Game::Game(TextureHolder* textures)
+Game::Game(ResourceHolder<sf::Texture, Textures::ID>* textures)
   : window(sf::VideoMode(640, 480), "SFML Application") {
   this->textures = textures;
 

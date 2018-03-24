@@ -1,13 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
 #include <SFML/Graphics.hpp>
+#include "textures.cpp"
+// interesting this causes a linker error when trying to include
+// the header instead?
+#include "resource_holder.cpp"
 #include "hero.h"
-#include "texture_holder.h"
 
 class Game {
 
   public:
-    Game(TextureHolder* textures);
+    Game(ResourceHolder<sf::Texture, Textures::ID>* textures);
     void run();
 
   private:
@@ -20,7 +23,7 @@ class Game {
   private:
     sf::RenderWindow window;
     std::vector<Hero> entities;
-    TextureHolder* textures;
+    ResourceHolder<sf::Texture, Textures::ID>* textures;
 
     bool movingUp;
     bool movingDown;
