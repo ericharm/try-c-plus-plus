@@ -1,14 +1,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "src/textures.cpp"
-// #include "src/texture_holder.h"
 #include "src/resource_holder.h"
 #include "src/game.h"
 
 using namespace sf;
 
 int main() {
-  // TextureHolder textures;
   ResourceHolder<sf::Texture, Textures::ID> textures;
   textures.load(Textures::Hero, "assets/images/hero.png");
 
