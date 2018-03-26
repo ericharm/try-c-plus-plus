@@ -13,10 +13,10 @@ build/resource_holder.o: build
 	 g++ -std=c++11 -c src/resource_holder.cpp -o ./build/resource_holder.o
 
 build/textures.o: build
-	 g++ -std=c++11 -c src/textures.cpp -o ./build/textures.o
+	 g++ -c src/textures.cpp -o ./build/textures.o
 
 build/hero.o: build
-	 g++ -std=c++11 -c src/hero.cpp -o ./build/hero.o
+	 g++ -c src/hero.cpp -o ./build/hero.o
 
 build:
 	 mkdir -p build
