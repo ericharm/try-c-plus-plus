@@ -8,6 +8,6 @@
 
 - `cd try-c-plus-plus`
 
-- `./compile` (requires g++, clang)
+- `make` (requires g++, clang)
 
 - `./build/app`

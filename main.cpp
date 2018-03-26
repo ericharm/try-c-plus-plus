@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "src/textures.cpp"
-#include "src/resource_holder.h"
+#include "src/resource_holder.cpp"
 #include "src/game.h"
 
 using namespace sf;
