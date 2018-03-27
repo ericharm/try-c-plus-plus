@@ -7,7 +7,8 @@
 using namespace sf;
 
 int main() {
-  ResourceHolder<sf::Texture, Textures::ID> textures;
+  typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+  TextureHolder textures;
   textures.load(Textures::Hero, "assets/images/hero.png");
 
   Game game(&textures);

@@ -1,8 +1,9 @@
 #ifndef HERO_H
 #define HERO_H
+#include "entity.h"
 #include <SFML/Graphics.hpp>
 
-class Hero {
+class Hero : public Entity {
 
   public:
     Hero(sf::Texture texture);

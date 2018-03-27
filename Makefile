@@ -18,6 +18,9 @@ build/textures.o: build
 build/hero.o: build
 	 g++ -c src/hero.cpp -o ./build/hero.o
 
+build/entity.o: build
+	 g++ -c src/entity.cpp -o ./build/entity.o
+
 build:
 	 mkdir -p build
 

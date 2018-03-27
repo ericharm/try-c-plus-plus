@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game(ResourceHolder<sf::Texture, Textures::ID>* textures)
+Game::Game(TextureHolder* textures)
   : window(sf::VideoMode(640, 480), "SFML Application") {
   this->textures = textures;
 
