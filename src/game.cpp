@@ -1,11 +1,15 @@
 #include "game.h"
+#include "hero.h"
 
-Game::Game(TextureHolder* textures)
-  : window(sf::VideoMode(640, 480), "SFML Application") {
-  this->textures = textures;
+#include "textures.cpp"
+#include "resource_holder.cpp"
 
-  sf::Texture heroTexture = this->textures->get(Textures::Hero);
-  Hero hero = Hero(heroTexture);
+Game::Game() : window(sf::VideoMode(800, 600), "SFML Application") {
+  typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+  TextureHolder textures;
+  textures.load(Textures::Hero, "assets/images/hero.png");
+
+  Hero* hero = new Hero(textures);
   this->entities.push_back(hero);
 
   this->movingUp = false;
@@ -71,7 +75,7 @@ void Game::update(sf::Time deltaTime) {
   if (this->movingRight) movement.x += speed;
 
   if (!this->entities.empty()) {
-    Hero* hero = &entities.front();
+    Entity* hero = entities.front();
     hero->update(movement * deltaTime.asSeconds());
   }
 }
@@ -79,8 +83,8 @@ void Game::update(sf::Time deltaTime) {
 void Game::render() {
     this->window.clear();
     if (!this->entities.empty()) {
-      Hero hero = entities.front();
-      hero.render(this->window);
+      Entity* hero = entities.front();
+      hero->render(this->window);
     }
     this->window.display();
 }

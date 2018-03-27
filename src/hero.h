@@ -1,14 +1,16 @@
 #ifndef HERO_H
 #define HERO_H
+#include "textures.cpp"
 #include "entity.h"
 #include <SFML/Graphics.hpp>
 
 class Hero : public Entity {
 
   public:
-    Hero(sf::Texture texture);
-    void update(sf::Vector2f direction);
-    void render(sf::RenderWindow& window);
+    typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+    Hero(TextureHolder& textures);
+    virtual void update(sf::Vector2f direction);
+    virtual void render(sf::RenderWindow& window);
 
   private:
     sf::Texture texture;
