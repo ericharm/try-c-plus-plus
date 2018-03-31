@@ -1,5 +1,6 @@
 #include "scene_node.h"
 
+#include <iostream>
 #include <algorithm>
 #include <cassert>
 
@@ -48,7 +49,7 @@ void SceneNode::updateChildren(sf::Time dt) const {
   }
 }
 
-void SceneNode::updateCurrent(sf::Time dt) const {
+void SceneNode::updateCurrent(sf::Time dt) {
 }
 
 sf::Transform SceneNode::getWorldTransform() const {

@@ -13,10 +13,6 @@ sf::Vector2f Entity::getVelocity() const {
   return this->velocity;
 }
 
-// these custom update and render functions will soon be gone
-void Entity::updatex(sf::Vector2f direction) {
-}
-
 void Entity::updateCurrent(sf::Time dt) {
-  move(velocity * dt.asSeconds());
+  move(getVelocity() * dt.asSeconds());
 }

@@ -10,43 +10,43 @@ Game::Game() : window(sf::VideoMode(800, 600), "SFML Application") {
   textures.load(Textures::Hero, "assets/images/hero.png");
 
   Hero* hero = new Hero(textures);
-  this->entities.push_back(hero);
+  entities.push_back(hero);
 
-  this->movingUp = false;
-  this->movingDown = false;
-  this->movingLeft = false;
-  this->movingRight = false;
+  movingUp = false;
+  movingDown = false;
+  movingLeft = false;
+  movingRight = false;
 }
 
 void Game::run() {
   sf::Clock clock;
   sf::Time timePerFrame = sf::seconds(1.0f / 30.0f);
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
-  while (this->window.isOpen()) {
-    this->handleInput();
+  while (window.isOpen()) {
+    handleInput();
     timeSinceLastUpdate += clock.restart();
     while (timeSinceLastUpdate > timePerFrame) {
       timeSinceLastUpdate -= timePerFrame;
-      this->handleInput();
-      this->update(timePerFrame);
+      handleInput();
+      update(timePerFrame);
     }
-    this->render();
+    draw();
   }
 }
 
 void Game::handleInput() {
   sf::Event event;
-  while (this->window.pollEvent(event))
+  while (window.pollEvent(event))
   {
     switch (event.type) {
       case sf::Event::KeyPressed:
-        this->handleKeyPress(event.key.code, true);
+        handleKeyPress(event.key.code, true);
         break;
       case sf::Event::KeyReleased:
-        this->handleKeyPress(event.key.code, false);
+        handleKeyPress(event.key.code, false);
         break;
       case sf::Event::Closed:
-        this->window.close();
+        window.close();
         break;
       default:
         ;
@@ -69,18 +69,19 @@ void Game::handleKeyPress(sf::Keyboard::Key key, bool pressed) {
 void Game::update(sf::Time deltaTime) {
   float speed = 100.0f;
   sf::Vector2f movement(0.f, 0.f);
-  if (this->movingUp) movement.y -= speed;
-  if (this->movingDown) movement.y += speed;
-  if (this->movingLeft) movement.x -= speed;
-  if (this->movingRight) movement.x += speed;
+  if (movingUp) movement.y -= speed;
+  if (movingDown) movement.y += speed;
+  if (movingLeft) movement.x -= speed;
+  if (movingRight) movement.x += speed;
 
-  if (!this->entities.empty()) {
+  if (!entities.empty()) {
     Entity* hero = entities.front();
-    hero->updatex(movement * deltaTime.asSeconds());
+    hero->setVelocity(movement);
+    hero->update(deltaTime);
   }
 }
 
-void Game::render() {
+void Game::draw() {
     window.clear();
     if (!entities.empty()) {
       SceneNode* hero = entities.front();

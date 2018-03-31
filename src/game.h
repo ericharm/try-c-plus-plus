@@ -12,7 +12,7 @@ class Game {
   private:
     void handleInput();
     void update(sf::Time deltaTime);
-    void render();
+    void draw();
     void handleKeyPress(sf::Keyboard::Key key, bool isPressed);
 
   private:
