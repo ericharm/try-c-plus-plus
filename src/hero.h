@@ -9,8 +9,10 @@ class Hero : public Entity {
   public:
     typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
     Hero(TextureHolder& textures);
-    virtual void update(sf::Vector2f direction);
-    virtual void render(sf::RenderWindow& window);
+    virtual void updatex(sf::Vector2f direction);
+
+  private:
+    virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
   private:
     sf::Texture texture;

@@ -76,15 +76,15 @@ void Game::update(sf::Time deltaTime) {
 
   if (!this->entities.empty()) {
     Entity* hero = entities.front();
-    hero->update(movement * deltaTime.asSeconds());
+    hero->updatex(movement * deltaTime.asSeconds());
   }
 }
 
 void Game::render() {
-    this->window.clear();
-    if (!this->entities.empty()) {
-      Entity* hero = entities.front();
-      hero->render(this->window);
+    window.clear();
+    if (!entities.empty()) {
+      SceneNode* hero = entities.front();
+      window.draw(*hero);
     }
-    this->window.display();
+    window.display();
 }
