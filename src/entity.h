@@ -8,7 +8,6 @@
 class Entity : public SceneNode {
 
   public:
-    typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
     void setVelocity(sf::Vector2f velocity);
     void setVelocity(float x, float y);
     sf::Vector2f getVelocity() const;

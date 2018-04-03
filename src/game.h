@@ -1,11 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 #include <SFML/Graphics.hpp>
+#include "world.h"
 #include "entity.h"
 
 class Game {
 
   public:
+    typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
     Game();
     void run();
 
@@ -18,6 +20,7 @@ class Game {
   private:
     sf::RenderWindow window;
     std::vector<Entity*> entities;
+    World world;
 
     bool movingUp;
     bool movingDown;

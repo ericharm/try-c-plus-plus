@@ -9,8 +9,11 @@ build/app: build/main.o
 build/main.o: build/resource_holder.o build/textures.o build/game.o
 	 $(CPP) $(CPPFLAGS) main.cpp $(OFLAGS)main.o
 
-build/game.o: build/resource_holder.o build/textures.o build/hero.o build/entity.o
+build/game.o: build/resource_holder.o build/textures.o build/hero.o build/entity.o build/world.o
 	 $(CPP) $(CPPFLAGS) src/game.cpp $(OFLAGS)game.o
+
+build/world.o: build/scene_node.o build/hero.o
+	 $(CPP) $(CPPFLAGS) src/world.cpp $(OFLAGS)world.o
 
 build/hero.o: build build/entity.o
 	 $(CPP) $(CPPFLAGS) src/hero.cpp $(OFLAGS)hero.o

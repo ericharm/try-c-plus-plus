@@ -1,6 +1,5 @@
 #include "scene_node.h"
 
-#include <iostream>
 #include <algorithm>
 #include <cassert>
 
