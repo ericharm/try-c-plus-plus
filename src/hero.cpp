@@ -1,6 +1,6 @@
 #include "hero.h"
 
-Hero::Hero(TextureHolder& textures) {
+Hero::Hero(SceneNode::TextureHolder& textures) {
   texture = textures.get(Textures::Hero);
   sprite = sf::Sprite(texture);
   sprite.setTexture(texture);

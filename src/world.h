@@ -3,6 +3,7 @@
 #include <array>
 #include "scene_node.h"
 #include "hero.h"
+#include "textures.cpp"
 
 class World : private sf::NonCopyable {
 
@@ -10,6 +11,7 @@ class World : private sf::NonCopyable {
     explicit World(sf::RenderWindow& w);
     void update(sf::Time deltaTime);
     void draw();
+    void handleInput();
 
   private:
     void loadTextures();
@@ -28,5 +30,6 @@ class World : private sf::NonCopyable {
     std::array<SceneNode*, LayerCount> layers;
     sf::Vector2f spawnPoint;
     Hero* hero;
+    SceneNode::TextureHolder textures;
 };
-#endif;
+#endif

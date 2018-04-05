@@ -8,9 +8,13 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 
+#include "resource_holder.cpp"
+#include "textures.cpp"
+
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable {
   public:
     typedef std::unique_ptr<SceneNode> NodePtr;
+    typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
     SceneNode();
     void attachChild(NodePtr child);
     NodePtr detachChild(const SceneNode& child);
