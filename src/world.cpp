@@ -1,13 +1,21 @@
 #include "world.h"
 
 World::World(sf::RenderWindow& w) : window(w), spawnPoint(100.0f, 100.0f) {
-  // sceneGraph = 
   loadTextures();
   buildScene();
 }
 
 void World::update(sf::Time deltaTime) {
-  // std::cout << "Updating world" << std::endl;
+  // should be able to called inputController->handleInput();
+  float speed = 100.0f;
+  sf::Vector2f movement(0.f, 0.f);
+  if (movingUp) movement.y -= speed;
+  if (movingDown) movement.y += speed;
+  if (movingLeft) movement.x -= speed;
+  if (movingRight) movement.x += speed;
+
+  hero->setVelocity(movement);
+  hero->update(deltaTime);
 }
 
 void World::draw() {
@@ -23,18 +31,32 @@ void World::handleInput() {
   while (window.pollEvent(event))
   {
     switch (event.type) {
-      // case sf::Event::KeyPressed:
-        // handleKeyPress(event.key.code, true);
-        // break;
-      // case sf::Event::KeyReleased:
-        // handleKeyPress(event.key.code, false);
-        // break;
+      // break out into input handler class
+      case sf::Event::KeyPressed:
+        handleKeyPress(event.key.code, true);
+        break;
+      case sf::Event::KeyReleased:
+        handleKeyPress(event.key.code, false);
+        break;
+
       case sf::Event::Closed:
         window.close();
         break;
       default:
         ;
     }
+  }
+}
+
+void World::handleKeyPress(sf::Keyboard::Key key, bool pressed) {
+  if (key == sf::Keyboard::Up) {
+    movingUp = pressed;
+  } else if (key == sf::Keyboard::Left) {
+    movingLeft = pressed;
+  } else if (key == sf::Keyboard::Down) {
+    movingDown = pressed;
+  } else if (key == sf::Keyboard::Right) {
+    movingRight = pressed;
   }
 }
 

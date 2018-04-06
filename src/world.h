@@ -22,6 +22,8 @@ class World : private sf::NonCopyable {
       Foreground,
       LayerCount
     };
+    void handleKeyPress(sf::Keyboard::Key key, bool pressed);
+
 
   private:
     sf::RenderWindow& window;
@@ -31,5 +33,10 @@ class World : private sf::NonCopyable {
     sf::Vector2f spawnPoint;
     Hero* hero;
     SceneNode::TextureHolder textures;
+
+    bool movingUp;
+    bool movingDown;
+    bool movingLeft;
+    bool movingRight;
 };
 #endif

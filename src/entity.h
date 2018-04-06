@@ -1,8 +1,6 @@
 #ifndef ENTITY_H
 #define ENTITY_H
-// #include "resource_holder.cpp"
 #include "scene_node.h"
-// #include "textures.cpp"
 #include <SFML/Graphics.hpp>
 
 class Entity : public SceneNode {
