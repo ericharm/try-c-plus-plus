@@ -2,6 +2,7 @@
 #define GAME_H
 #include <SFML/Graphics.hpp>
 #include "world.h"
+#include "game_input_handler.h"
 
 class Game {
 
@@ -17,6 +18,7 @@ class Game {
   private:
     sf::RenderWindow window;
     World world;
+    GameInputHandler inputHandler;
 
 };
 #endif

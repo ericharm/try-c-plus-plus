@@ -1,6 +1,7 @@
 #include "game.h"
+#include "command_queue.h"
 
-Game::Game() : window(sf::VideoMode(800, 600), "SFML Application"), world(window) {
+Game::Game() : window(sf::VideoMode(800, 600), "SFML Application"), world(window), inputHandler() {
 }
 
 void Game::run() {
@@ -19,7 +20,14 @@ void Game::run() {
 }
 
 void Game::handleInput() {
-  world.handleInput();
+  CommandQueue& commands = world.getCommandQueue();
+  sf::Event event;
+  while (window.pollEvent(event)) {
+    inputHandler.handleEvent(event, commands);
+    if (event.type == sf::Event::Closed)
+      window.close();
+  }
+  inputHandler.handleRealtimeInput(commands);
 }
 
 void Game::update(sf::Time deltaTime) {

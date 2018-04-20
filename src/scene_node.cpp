@@ -62,3 +62,14 @@ sf::Transform SceneNode::getWorldTransform() const {
 sf::Vector2f SceneNode::getWorldPosition() const {
   return getWorldTransform() * sf::Vector2f();
 }
+
+unsigned int SceneNode::getCategory() const {
+  return Category::Scene;
+}
+
+void SceneNode::onCommand(const Command& command, sf::Time dt) {
+  if (command.category & getCategory())
+    command.action(*this, dt);
+  for (const NodePtr& child : children)
+    child->onCommand(command, dt);
+}

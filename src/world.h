@@ -2,6 +2,7 @@
 #define WORLD_H
 #include <array>
 #include "scene_node.h"
+#include "command_queue.h"
 #include "hero.h"
 #include "textures.cpp"
 
@@ -11,7 +12,7 @@ class World : private sf::NonCopyable {
     explicit World(sf::RenderWindow& w);
     void update(sf::Time deltaTime);
     void draw();
-    void handleInput();
+    CommandQueue& getCommandQueue();
 
   private:
     void loadTextures();
@@ -22,7 +23,6 @@ class World : private sf::NonCopyable {
       Foreground,
       LayerCount
     };
-    void handleKeyPress(sf::Keyboard::Key key, bool pressed);
 
 
   private:
@@ -33,10 +33,6 @@ class World : private sf::NonCopyable {
     sf::Vector2f spawnPoint;
     Hero* hero;
     SceneNode::TextureHolder textures;
-
-    bool movingUp;
-    bool movingDown;
-    bool movingLeft;
-    bool movingRight;
+    CommandQueue commandQueue;
 };
 #endif

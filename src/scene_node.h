@@ -10,6 +10,8 @@
 
 #include "resource_holder.cpp"
 #include "textures.cpp"
+#include "category.cpp"
+#include "command.cpp"
 
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable {
   public:
@@ -21,6 +23,8 @@ class SceneNode : public sf::Transformable, public sf::Drawable, private sf::Non
     void update(sf::Time dt);
     sf::Transform getWorldTransform() const;
     sf::Vector2f getWorldPosition() const;
+    virtual unsigned int getCategory() const;
+    void onCommand(const Command& command, sf::Time dt);
 
   private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

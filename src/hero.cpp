@@ -14,3 +14,7 @@ Hero::Hero(SceneNode::TextureHolder& textures) {
 void Hero::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
   target.draw(sprite, states);
 }
+
+unsigned int Hero::getCategory() const {
+  return Category::Hero;
+}

@@ -7,14 +7,21 @@ World::World(sf::RenderWindow& w) : window(w), spawnPoint(100.0f, 100.0f) {
 
 void World::update(sf::Time deltaTime) {
   // should be able to called inputController->handleInput();
-  float speed = 100.0f;
-  sf::Vector2f movement(0.f, 0.f);
-  if (movingUp) movement.y -= speed;
-  if (movingDown) movement.y += speed;
-  if (movingLeft) movement.x -= speed;
-  if (movingRight) movement.x += speed;
+  // float speed = 100.0f;
+  // sf::Vector2f movement(0.f, 0.f);
+  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    // movement.y -= speed;
+  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    // movement.y += speed;
+  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    // movement.x -= speed;
+  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    // movement.x += speed;
+  // hero->setVelocity(movement);
 
-  hero->setVelocity(movement);
+  while (!commandQueue.isEmpty())
+    sceneGraph.onCommand(commandQueue.pop(), deltaTime);
+
   hero->update(deltaTime);
 }
 
@@ -24,40 +31,6 @@ void World::draw() {
 
 void World::loadTextures() {
   textures.load(Textures::Hero, "assets/images/hero.png");
-}
-
-void World::handleInput() {
-  sf::Event event;
-  while (window.pollEvent(event))
-  {
-    switch (event.type) {
-      // break out into input handler class
-      case sf::Event::KeyPressed:
-        handleKeyPress(event.key.code, true);
-        break;
-      case sf::Event::KeyReleased:
-        handleKeyPress(event.key.code, false);
-        break;
-
-      case sf::Event::Closed:
-        window.close();
-        break;
-      default:
-        ;
-    }
-  }
-}
-
-void World::handleKeyPress(sf::Keyboard::Key key, bool pressed) {
-  if (key == sf::Keyboard::Up) {
-    movingUp = pressed;
-  } else if (key == sf::Keyboard::Left) {
-    movingLeft = pressed;
-  } else if (key == sf::Keyboard::Down) {
-    movingDown = pressed;
-  } else if (key == sf::Keyboard::Right) {
-    movingRight = pressed;
-  }
 }
 
 void World::buildScene() {
@@ -71,4 +44,8 @@ void World::buildScene() {
   hero = h.get();
   hero->setPosition(spawnPoint);
   layers[Foreground]->attachChild(std::move(h));
+}
+
+CommandQueue& World::getCommandQueue() {
+  return commandQueue;
 }
