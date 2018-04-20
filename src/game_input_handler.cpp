@@ -14,10 +14,47 @@ void GameInputHandler::handleRealtimeInput(CommandQueue& commands) {
     moveUp.action = [] (SceneNode& node, sf::Time dt) {
       float speed = 100.0;
       Hero& hero = static_cast<Hero&>(node);
-      hero.setVelocity(0.f, speed * -1.0);
+      sf::Vector2f velocity(0.f, speed * -1.0);
+      hero.accelerate(velocity);
     };
     moveUp.category = Category::Hero;
     commands.push(moveUp);
   }
-    // movement.y -= speed;
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+    Command moveUp; 
+    moveUp.action = [] (SceneNode& node, sf::Time dt) {
+      float speed = 100.0;
+      Hero& hero = static_cast<Hero&>(node);
+      sf::Vector2f velocity(0.f, speed);
+      hero.accelerate(velocity);
+    };
+    moveUp.category = Category::Hero;
+    commands.push(moveUp);
+  }
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    Command moveUp; 
+    moveUp.action = [] (SceneNode& node, sf::Time dt) {
+      float speed = 100.0;
+      Hero& hero = static_cast<Hero&>(node);
+      sf::Vector2f velocity(speed * -1.f, 0.f);
+      hero.accelerate(velocity);
+    };
+    moveUp.category = Category::Hero;
+    commands.push(moveUp);
+  }
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    Command moveUp; 
+    moveUp.action = [] (SceneNode& node, sf::Time dt) {
+      float speed = 100.0;
+      Hero& hero = static_cast<Hero&>(node);
+      sf::Vector2f velocity(speed, 0.f);
+      hero.accelerate(velocity);
+    };
+    moveUp.category = Category::Hero;
+    commands.push(moveUp);
+  }
 }
+
