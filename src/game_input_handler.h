@@ -8,8 +8,5 @@ class GameInputHandler {
     void handleEvent(const sf::Event& event, CommandQueue& commands);
     void handleRealtimeInput(CommandQueue& commands);
 
-  private:
-    std::function<void(SceneNode&, sf::Time)> moveAction;
-
 };
 #endif

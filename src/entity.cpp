@@ -14,9 +14,13 @@ sf::Vector2f Entity::getVelocity() const {
 }
 
 void Entity::updateCurrent(sf::Time dt) {
-  move(getVelocity() * dt.asSeconds());
+  move(velocity * dt.asSeconds());
 }
 
 void Entity::accelerate(sf::Vector2f v) {
   velocity += v;
+}
+
+void Entity::accelerate(float x, float y) {
+  velocity += sf::Vector2f(x, y);
 }

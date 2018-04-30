@@ -3,6 +3,7 @@
 #include "hero.h"
 #include "command.cpp"
 #include "category.cpp"
+#include "direction.cpp"
 
 void GameInputHandler::handleEvent(const sf::Event& event, CommandQueue& commands) {
 
@@ -10,51 +11,43 @@ void GameInputHandler::handleEvent(const sf::Event& event, CommandQueue& command
 
 void GameInputHandler::handleRealtimeInput(CommandQueue& commands) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-    Command moveUp; 
-    moveUp.action = [] (SceneNode& node, sf::Time dt) {
-      float speed = 100.0;
+    Command move; 
+    move.action = [] (SceneNode& node, sf::Time dt) {
       Hero& hero = static_cast<Hero&>(node);
-      sf::Vector2f velocity(0.f, speed * -1.0);
-      hero.accelerate(velocity);
+      hero.setMoving(Up);
     };
-    moveUp.category = Category::Hero;
-    commands.push(moveUp);
+    move.category = Category::Hero;
+    commands.push(move);
   }
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-    Command moveUp; 
-    moveUp.action = [] (SceneNode& node, sf::Time dt) {
-      float speed = 100.0;
+    Command move; 
+    move.action = [] (SceneNode& node, sf::Time dt) {
       Hero& hero = static_cast<Hero&>(node);
-      sf::Vector2f velocity(0.f, speed);
-      hero.accelerate(velocity);
+      hero.setMoving(Down);
     };
-    moveUp.category = Category::Hero;
-    commands.push(moveUp);
+    move.category = Category::Hero;
+    commands.push(move);
   }
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-    Command moveUp; 
-    moveUp.action = [] (SceneNode& node, sf::Time dt) {
-      float speed = 100.0;
+    Command move; 
+    move.action = [] (SceneNode& node, sf::Time dt) {
       Hero& hero = static_cast<Hero&>(node);
-      sf::Vector2f velocity(speed * -1.f, 0.f);
-      hero.accelerate(velocity);
+      hero.setMoving(Left);
     };
-    moveUp.category = Category::Hero;
-    commands.push(moveUp);
+    move.category = Category::Hero;
+    commands.push(move);
   }
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-    Command moveUp; 
-    moveUp.action = [] (SceneNode& node, sf::Time dt) {
-      float speed = 100.0;
+    Command move; 
+    move.action = [] (SceneNode& node, sf::Time dt) {
       Hero& hero = static_cast<Hero&>(node);
-      sf::Vector2f velocity(speed, 0.f);
-      hero.accelerate(velocity);
+      hero.setMoving(Right);
     };
-    moveUp.category = Category::Hero;
-    commands.push(moveUp);
+    move.category = Category::Hero;
+    commands.push(move);
   }
 }
 
